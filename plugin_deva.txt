@@ -1,0 +1,55 @@
+package plugin;
+
+import java.util.logging.Logger;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+public class login extends JavaPlugin { 
+	public final Logger logger = Logger.getLogger("Minecraft");
+
+	public void onEnable() {
+		logger.info("D3va plugin is enabled");
+	}
+	public void onDisable() {
+		logger.info("D3va plugin has been disabled");
+	}
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+		Player player = (Player) sender;
+		if(commandLabel.equalsIgnoreCase("sendme")){
+			player.sendMessage(ChatColor.BLUE + "Sent");
+		}
+		if(commandLabel.equalsIgnoreCase("name")){
+			String name = player.getDisplayName();
+			player.sendMessage(ChatColor.BLUE + "your name is " + name);
+		}
+		if(commandLabel.equalsIgnoreCase("sleep")){
+			String name = player.getDisplayName();
+			//int random=(int) Math.floor(Math.random()*4);
+			PlayerInventory inventory = player.getInventory();
+			inventory.addItem(new ItemStack(Material.BED));
+			player.sendMessage(ChatColor.BLUE + "Hello player " + name +". Now you can sleep :).");
+		}
+		if(commandLabel.equalsIgnoreCase("time")){
+			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+			player.sendMessage(ChatColor.BLUE + "Current time is " + timeStamp);
+		}
+		if(player.isSleeping()==true){
+			String name = player.getDisplayName();
+			player.sendMessage(ChatColor.BLUE + "Good night player " + name);
+		}
+		if(commandLabel.equalsIgnoreCase("shop")){
+			
+		}
+		return false;
+	}
+}
+	
