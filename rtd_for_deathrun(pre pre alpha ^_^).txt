@@ -1,0 +1,80 @@
+package deathrun;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
+import java.util.logging.Logger;
+
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+public class Deathrun extends JavaPlugin { 
+	public final Logger logger = Logger.getLogger("Minecraft");
+
+	public void onEnable() {
+		logger.info("D3va plugin is enabled");
+	}
+	public void onDisable() {
+		logger.info("D3va plugin has been disabled");
+	}
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+		Player player = (Player) sender;
+		if(commandLabel.equalsIgnoreCase("rtd_weapon")){
+			int random=(int) Math.floor(Math.random()*5);
+			if(random==0){
+				 player.getPlayer();
+				 player.sendMessage(ChatColor.BLUE + "No luck for you this time :P");
+				 player.setHealth(0);
+			}
+			else if(random==1){
+				 player.getPlayer();	
+				 String name = player.getDisplayName();
+					PlayerInventory inventory = player.getInventory();
+					inventory.addItem(new ItemStack(Material.BOW));
+					inventory.addItem(new ItemStack(Material.ARROW));
+					inventory.addItem(new ItemStack(Material.ARROW));
+					inventory.addItem(new ItemStack(Material.ARROW));
+					inventory.addItem(new ItemStack(Material.ARROW));
+					inventory.addItem(new ItemStack(Material.ARROW));
+					player.sendMessage(ChatColor.BLUE + "Hello player " + name +". This is a good weapon for far distance :).");
+			 }
+			 else if(random==2){
+				 player.getPlayer();
+				 player.sendMessage(ChatColor.BLUE + "No luck for you this time :P");
+				 player.setHealth(0);
+			 }
+			 else if(random==3){
+				 player.getPlayer();
+				 String name = player.getDisplayName();
+				 PlayerInventory inventory = player.getInventory();
+				 inventory.addItem(new ItemStack(Material.DIAMOND_SWORD));
+				 player.sendMessage(ChatColor.BLUE + name + " seem to be very happy :). Enjoy your diamond sword :D");
+			 }
+			 else if(random==4){
+				 player.getPlayer();
+				 player.getExp();
+				 String name = player.getDisplayName();
+				 player.giveExp(250);
+				 player.sendMessage(ChatColor.BLUE + "Hello player " + name + " .Enjoy your 250 expirience :).");
+			 }
+			 else if(random==5){
+				 String name = player.getDisplayName();
+				 player.getPlayer();
+				 player.getWalkSpeed();
+				 player.setWalkSpeed(20);
+				 player.sendMessage(ChatColor.BLUE + "Enjoy your speed player " + name + ". Have fun ^.^");
+			 }
+			}
+		if(commandLabel.equalsIgnoreCase("time")){
+			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+			player.sendMessage(ChatColor.BLUE + "Current time is " + timeStamp);
+		}
+		return false;
+		}
+	}
